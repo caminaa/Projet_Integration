@@ -12,4 +12,5 @@ read commande parametre
 if [ $commande = "ping" ]
 then
         ping $parametre
+qjnhfliauzefguzebfzdbizebflhize
 fi
