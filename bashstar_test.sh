@@ -8,4 +8,4 @@ testPing()
 }
 
 # load shunit2
-. /src/shunit2
+. src/shunit2
