@@ -41,6 +41,7 @@ echo " "
 echo " "
 echo "Veuillez rentrer la commande et/ou son paramètre : (tappez \"help\" pour recevoir de l'aide)" 
 echo " "
+echo " "
 
 read commande parametre
 
