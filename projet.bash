@@ -22,7 +22,10 @@ blanc='\e[1;37m'
 
 neutre='\e[0;m'
 
+while [ "$close" -ne "$clesortie" ]
+do
 
+clear
 echo -e "${rose} _______      ____       .-'''-. .---.  .---.    .-'''-. ,---------.    ____    .-------.     "
 echo -e "\  ____  \  .'  __ \`.   / _     \|   |  |_ _|   / _     \\          \ .'  __ \`. |  _ _   \    "
 echo -e "| |    \ | /   '  \  \ (\`' )/\`--'|   |  ( ' )  (\`' )/\`--' \`--.  ,---'/   '  \  \| ( ' )  |    "
@@ -33,8 +36,6 @@ echo -e "| (_{;}_) ||  _( )_  |\    \`-'  ||( ' ) |   | \    \`-'  |   (_(=)_)  
 echo -e "|  (_,_)  /\ (_ o _) / \       / (_{;}_)|   |  \       /     (_I_)   \ (_ o _) /|  |  \    /  "
 echo -e "/_______.'  '.(_,_).'   \`-...-'  '(_,_) '---'   \`-...-'      '---'    '.(_,_).' ''-'   \`'-'   ${neutre}"
 
-while [ "$close" -ne "$clesortie" ]
-do
 
 echo " "
 echo " "
@@ -45,15 +46,49 @@ read commande parametre
 
 if [ "$commande" = "ping" ]
 then
-        echo -e "${jaune}Vous venez de ping ${neutre}${cyanclair}$parametre${neutre} ${jaune}, vous êtes vraiment doué(e), voici la moyenne en ms :${neutre} ${rose}" && ping -c 10 -i 0.2 $parametre -q -w 1 | tail -n 1 | cut -d' ' -f4 | cut -d'/' -f2
+	clear
+	echo -e "  .-------. .-./\`) ,---.   .--.  .-_'''-.    "
+	echo -e "  \  _(\`)_ \\\\\ .-.')|    \  |  | '_( )_   \   "
+	echo -e "  | (_ o._)|/ \`-' \|  ,  \ |  ||(_ o _)|  '  "
+	echo -e "  |  (_,_) / \`-'\`\"\`|  |\_ \|  |. (_,_)/___|"
+	echo -e "  |   '-.-'  .---. |  _( )_\  ||  |  .-----. "
+	echo -e "  |   |      |   | | (_ o _)  |'  \  '-   .' "
+	echo -e "  |   |      |   | |  (_,_)\  | \  \`-'\`   |  "
+	echo -e "  /   )      |   | |  |    |  |  \        /  "
+	echo -e "  \`---'      '---' '--'    '--'   \`'-...-'"
+	if [ -z $parametre ]
+	then
+		echo -e "Vous n'avez pas rentré de paramètre !"
+		read
+	fi 
+	if [ $parametre ]
+	then
+		echo -e "${jaune}Vous venez de ping ${neutre}${cyanclair}$parametre${neutre} ${jaune}, vous êtes vraiment doué(e), voici la moyenne en ms :${neutre} ${rose}"
+		ping -c 10 -i 0.2 $parametre -q -w 1 | tail -n 1 | cut -d' ' -f4 | cut -d'/' -f2
+		read
+	fi      
 	echo -e "${neutre}"
 fi
+
 if [ "$commande" = "help" ]
 then
+	clear
+	echo -e "${vertclair}  .---.  .---.     .-''-.    .---.     .-------.  "
+	echo -e "  |   |  |_ _|   .'_ _   \   | ,_|     \  _(\`)_ \ "
+	echo -e "  |   |  ( ' )  / ( \` )   ',-./  )     | (_ o._)| "
+	echo -e "  |   '-(_{;}_). (_ o _)  |\  '_ '\`)   |  (_,_) / "
+	echo -e "  |      (_,_) |  (_,_)___| > (_)  )   |   '-.-'  "
+	echo -e "  | _ _--.   | '  \   .---.(  .  .-'   |   |      "
+	echo -e "  |( ' ) |   |  \  \`-'    / \`-'\`-'|___ |   |      "
+	echo -e "  (_{;}_)|   |   \       /   |        \/   )      "
+	echo -e "  '(_,_) '---'    \`'-..-'    \`--------\`\`---'${neutre}"
+	echo " "
 	echo -e "Voici la liste des commandes possibles :"
 	echo -e "Close : Permet fermer l'application !"
 	echo -e "ping [ip de la cible] : Permet de tester votre l'accés et la latence vers cet hôte"
+	read
 fi
+
 if [ "$commande" = "close" ]
 then
 	close=1
