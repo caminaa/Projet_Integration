@@ -64,9 +64,19 @@ then
 	fi 
 	if [ $parametre ]
 	then
-		echo -e "${jaune}Vous venez de ping ${neutre}${cyanclair}$parametre${neutre} ${jaune}, vous êtes vraiment doué(e), voici la moyenne en ms :${neutre} ${rose}"
-		ping -c 10 -i 0.2 $parametre -q -w 1 | tail -n 1 | cut -d' ' -f4 | cut -d'/' -f2
-		read
+		test = $(ping -c 10 -i 0.2 $parametre )
+		teste = $(cut -d: -f1 $test)
+		echo "$test"
+		echo "$teste"
+		if [[ $test = connect* ]]
+		then
+			echo -e "${rouge}Vous voulez ping une mauvaise ip${neutre}"
+		else
+		
+			echo -e "${jaune}Vous venez de ping ${neutre}${cyanclair}$parametre${neutre} ${jaune}, vous êtes vraiment doué(e), voici la moyenne en ms :${neutre} ${rose}"
+			ping -c 10 -i 0.2 $parametre -q -w 1 | tail -n 1 | cut -d' ' -f4 | cut -d'/' -f2
+			read
+		fi
 	fi      
 	echo -e "${neutre}"
 fi
