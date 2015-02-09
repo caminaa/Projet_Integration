@@ -64,9 +64,9 @@ then
 	fi 
 	if [ $parametre ]
 	then
-		test = $(ping -c 10 -i 0.2 $parametre )
-		teste = $(cut -d: -f1 $test)
-		echo "$test"
+		ping -c 10 -i 0.2 $parametre > test.tmp
+		$test2 < test.tmp
+		$teste = cut -d: -f1 test.tmp
 		echo "$teste"
 		if [[ $test = connect* ]]
 		then
