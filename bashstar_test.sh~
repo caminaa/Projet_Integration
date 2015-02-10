@@ -16,9 +16,16 @@ testPingFalse()
 testMonIpTrue()
 {
  	variable=`ip route get 8.8.8.8 2>/dev/null | awk 'NR==1 {print $NF}' 2>/dev/null`
-	assertEquals \ `ifconfig eth0 | grep 'inet adr:' | cut -d: -f2 | awk '{ print $1 }'` \ ${variable}
+	assertEquals \ `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'` \ ${variable}
 }
 
+testMonIpFalse()
+{
+	ifconfig eth0 down
+ 	variable=`ip route get g 2>/dev/null`
+	ifconfig eth0 up
+	assertEquals \ '' \ ${variable}
+}
 
 
 # load shunit2
