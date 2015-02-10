@@ -13,5 +13,13 @@ testPingFalse()
 	assertEquals \ '' \ ${variable}
 }
 
+testMonIpTrue()
+{
+ 	variable=`ip route get 8.8.8.8 2>/dev/null | awk 'NR==1 {print $NF}' 2>/dev/null`
+	assertEquals \ `ifconfig eth0 | grep 'inet adr:' | cut -d: -f2 | awk '{ print $1 }'` \ ${variable}
+}
+
+
+
 # load shunit2
 . src/shunit2

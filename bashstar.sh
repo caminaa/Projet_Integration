@@ -80,6 +80,32 @@ then
 	echo -e "${neutre}"
 fi
 
+if [ "$commande" = "monIp" ]
+then
+	clear
+	echo -e "${bleuclair},---.    ,---.    ,-----.    ,---.   .--.        .-./\`) .-------.  "
+	echo -e "|    \  /    |  .'  .-,  '.  |    \  |  |        \ .-.')\  _(\`)_ \ "
+	echo -e "|  ,  \/  ,  | / ,-.|  \ _ \ |  ,  \ |  |        / \`-' \| (_ o._)| "
+	echo -e "|  |\_   /|  |;  \  '_ /  | :|  |\_ \|  |         \`-'\`\"\`|  (_,_) / "
+	echo -e "|  _( )_/ |  ||  _\`,/ \ _/  ||  _( )_\  |         .---. |   '-.-'  "
+	echo -e "| (_ o _) |  |: (  '\_/ \   ;| (_ o _)  |         |   | |   |      "
+	echo -e "|  (_,_)  |  | \ \`\"/  \  ) / |  (_,_)\  |         |   | |   |      "
+	echo -e "|  |      |  |  '. \_/\`\`\".'  |  |    |  |         |   | /   )      "
+	echo -e "'--'      '--'    '-----'    '--'    '--'         '---' \`---'   ${neutre}"
+	echo
+	testip=`ip route get 8.8.8.8 2>/dev/null | awk 'NR==1 {print $NF}' 2>/dev/null`
+	if [[ $testip = '' ]]
+	then
+		echo -e "${rose} Vous n'avez pas d'accés réseau ! ${neutre}"
+		read
+	else
+		echo -e "${jaune} Bravo ! Vous avez accés à Internet grâce à cette magnifique Ip : ${cyanclair}"
+		ip route get 8.8.8.8 | awk 'NR==1 {print $NF}'
+		echo -e "${neutre}"
+	read
+	fi
+fi
+
 if [ "$commande" = "help" ]
 then
 	clear
@@ -96,6 +122,7 @@ then
 	echo -e "Voici la liste des commandes possibles :"
 	echo -e "Close : Permet fermer l'application !"
 	echo -e "ping [ip de la cible] : Permet de tester votre l'accés et la latence vers cet hôte"
+	echo -e "monIp : Permet de voir votre Ip locale vous permettant d'accéder à Internet"
 	read
 fi
 
