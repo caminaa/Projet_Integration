@@ -22,7 +22,7 @@ testMonIpTrue()
 testMonIpFalse()
 {
 	ifconfig eth0 down
- 	variable=`ip route get g 2>/dev/null`
+ 	variable=`ip route get 8.8.8.8 2>/dev/null`
 	ifconfig eth0 up
 	assertEquals \ '' \ ${variable}
 }
