@@ -48,7 +48,7 @@ read commande parametre
 if [ "$commande" = "ping" ]
 then
 	clear
-	echo -e "  .-------. .-./\`) ,---.   .--.  .-_'''-.    "
+	echo -e "${orange}  .-------. .-./\`) ,---.   .--.  .-_'''-.    "
 	echo -e "  \  _(\`)_ \\\\\ .-.')|    \  |  | '_( )_   \   "
 	echo -e "  | (_ o._)|/ \`-' \|  ,  \ |  ||(_ o _)|  '  "
 	echo -e "  |  (_,_) / \`-'\`\"\`|  |\_ \|  |. (_,_)/___|"
@@ -56,7 +56,7 @@ then
 	echo -e "  |   |      |   | | (_ o _)  |'  \  '-   .' "
 	echo -e "  |   |      |   | |  (_,_)\  | \  \`-'\`   |  "
 	echo -e "  /   )      |   | |  |    |  |  \        /  "
-	echo -e "  \`---'      '---' '--'    '--'   \`'-...-'"
+	echo -e "  \`---'      '---' '--'    '--'   \`'-...-' ${neutre}"
 	if [ -z $parametre ]
 	then
 		echo -e "Vous n'avez pas rentré de paramètre !"
@@ -64,13 +64,12 @@ then
 	fi 
 	if [ $parametre ]
 	then
-		ping -c 10 -i 0.2 $parametre > test.tmp
-		$test2 < test.tmp
-		$teste = cut -d: -f1 test.tmp
-		echo "$teste"
-		if [[ $test = connect* ]]
+		test=`ping -c 10 -i 0.2 $parametre 2>/dev/null`
+		#echo $test
+		if [[ $test = '' ]]
 		then
-			echo -e "${rouge}Vous voulez ping une mauvaise ip${neutre}"
+			echo -e "${rouge} L'addresse IP n'est pas valide !${neutre}"
+			read
 		else
 		
 			echo -e "${jaune}Vous venez de ping ${neutre}${cyanclair}$parametre${neutre} ${jaune}, vous êtes vraiment doué(e), voici la moyenne en ms :${neutre} ${rose}"
@@ -105,5 +104,5 @@ then
 	close=1
 fi
 done
-
+echo -e "${neutre}"
 exit 0
