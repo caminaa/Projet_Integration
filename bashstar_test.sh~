@@ -19,10 +19,7 @@ testMonIpTrue()
 	assertEquals \ `ifconfig eth0 | grep 'inet adr:' | cut -d: -f2 | awk '{ print $1 }'` \ ${variable}
 }
 
-testMonIpFalse()
-{
 
-}
 
 # load shunit2
 . src/shunit2
